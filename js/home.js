@@ -82,7 +82,7 @@
     var name = window.withPlaceholder(DATA.name, "Konechiba Senpai");
     var bio = window.withPlaceholder(DATA.bio, "Bio yakında eklenecek.");
     var logo = window.withPlaceholder(DATA.logo, "");
-    var verifiedText = "Bu kullanıcı Eternal Yetenek Ajansı tarafından doğrulanmıştır.";
+    var verifiedText = "Bu kullanıcı Eternal Production tarafından onaylanmıştır.";
 
     if (nameEl) nameEl.textContent = name;
     if (bioEl) bioEl.textContent = bio;
@@ -163,8 +163,25 @@
     showView(window.location.hash === "#hesaplar" ? "accounts" : "home");
   }
 
+  function loadProfileConfig() {
+    fetch(new URL("data.json", document.baseURI).href)
+      .then(function (response) {
+        if (!response.ok) throw new Error("Profil ayarları yüklenemedi");
+        return response.json();
+      })
+      .then(function (config) {
+        var profile = config && config.profile ? config.profile : {};
+        if (typeof profile.photo === "string" && profile.photo.trim()) DATA.logo = profile.photo.trim();
+        if (typeof profile.description === "string" && profile.description.trim()) DATA.bio = profile.description.trim();
+      })
+      .catch(function () {
+        /* data.json yüklenemezse profil yedek verileri kullanılır. */
+      })
+      .then(renderHero);
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
-    renderHero();
+    loadProfileConfig();
     renderSocials();
     window.addEventListener("hashchange", syncFromHash);
     syncFromHash();
