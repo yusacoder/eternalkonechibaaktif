@@ -43,11 +43,11 @@ main.page-content{display:block;width:100%;max-width:800px;margin:0 auto;padding
 .avatar,.avatar-fallback{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.6);box-shadow:0 12px 38px rgba(0,0,0,.3),0 0 0 6px rgba(255,42,42,.08)}
 .avatar-fallback{display:grid;place-items:center;background:linear-gradient(145deg,#3a1010,#110505);color:#eee;font-family:"Noto Serif JP",serif;font-size:43px}
 .avatar[hidden]{display:none}
-.verified-mark{position:absolute;width:25px;height:25px;right:0;bottom:2px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;border:3px solid #111;padding:0;cursor:pointer}
+.verified-mark{position:relative;flex:0 0 22px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#1d9bf0;color:#fff;border:0;padding:0;cursor:pointer}
 .verified-mark[hidden]{display:none}
-.verified-mark:after{content:"";width:8px;height:4px;border-left:1.5px solid;border-bottom:1.5px solid;transform:rotate(-45deg) translate(1px,-1px)}
+.verified-mark:after{content:"";width:8px;height:4px;border-left:2px solid;border-bottom:2px solid;transform:rotate(-45deg) translate(1px,-1px)}
 .eyebrow{font-size:10px;line-height:1.5;letter-spacing:.27em;color:var(--accent);margin:0 0 12px;text-transform:uppercase}
-.profile-name{font-size:clamp(28px,5vw,42px);line-height:1.12;letter-spacing:.045em;font-weight:500;margin:0}
+.profile-name{font-size:clamp(28px,5vw,42px);line-height:1.12;letter-spacing:.045em;font-weight:500;margin:0;display:flex;align-items:center;justify-content:center;gap:10px}
 .profile-description{max-width:410px;margin:16px 0 0;color:rgba(255,255,255,.68);font-size:15px;line-height:1.8}
 .discover-link{margin-top:47px;width:min(100%,470px);min-height:78px;padding:18px 20px 18px 23px;border:1px solid var(--border);border-radius:14px;background:rgba(20,6,6,.5);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:var(--text);display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;font:inherit;text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
 .discover-link:hover{background:rgba(255,42,42,.1);border-color:rgba(255,42,42,.55);transform:translateY(-2px)}
