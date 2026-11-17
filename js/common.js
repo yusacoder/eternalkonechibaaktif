@@ -127,113 +127,42 @@
 
 
 
-  /* ---------- Arka plan fotoğrafı ve blur ayarları ---------- */
-  function initBackgroundControls() {
+  /* ---------- Kodla yönetilen arka plan ayarları (data.json) ---------- */
+  function loadBackgroundConfig() {
     var backdrop = document.querySelector(".backdrop");
-    var topbar = document.querySelector(".topbar");
-    if (!backdrop || !topbar) return;
+    if (!backdrop) return;
 
-    var STORAGE_KEY = "konechiba-background-settings";
-    var settings = { image: "", blur: 0 };
-    try {
-      settings = Object.assign(settings, JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"));
-    } catch (e) { /* Bozuk kayıt varsa varsayılanları kullan. */ }
+    var scriptUrl = document.currentScript && document.currentScript.src
+      ? document.currentScript.src
+      : new URL("js/common.js", document.baseURI).href;
+    var configUrl = new URL("../data.json", scriptUrl);
 
-    function applySettings() {
-      var imageLayer = settings.image ? 'url("' + settings.image.replace(/"/g, "%22") + '"), ' : "";
-      backdrop.style.backgroundImage = imageLayer + "var(--bg-image)";
-      backdrop.style.filter = "blur(" + Number(settings.blur || 0) + "px) saturate(var(--bg-saturation))";
-      document.documentElement.style.setProperty("--bg-blur", (Number(settings.blur) || 0) + "px");
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(settings)); } catch (e) { /* Depolama doluysa görünüm yine uygulanır. */ }
-    }
+    fetch(configUrl.href)
+      .then(function (response) {
+        if (!response.ok) throw new Error("Arka plan ayarları yüklenemedi");
+        return response.json();
+      })
+      .then(function (config) {
+        var background = config && config.background ? config.background : {};
+        var image = typeof background.image === "string" ? background.image.trim() : "";
+        var blur = Number(background.blur);
+        if (!Number.isFinite(blur)) blur = 0;
+        blur = Math.max(0, Math.min(24, blur));
 
-    var toggle = document.createElement("button");
-    toggle.type = "button";
-    toggle.className = "background-settings-toggle";
-    toggle.setAttribute("aria-label", "Arka plan ayarlarını aç");
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.innerHTML = '<i class="fa-solid fa-sliders"></i>';
-
-    var panel = document.createElement("section");
-    panel.className = "background-settings-panel";
-    panel.hidden = true;
-    panel.setAttribute("aria-label", "Arka plan ayarları");
-    panel.innerHTML = '<h2>Arka Plan Ayarları</h2>' +
-      '<label for="background-image-url">Fotoğraf bağlantısı</label>' +
-      '<input id="background-image-url" type="url" placeholder="https://ornek.com/fotograf.jpg" autocomplete="url">' +
-      '<label for="background-image-file">veya cihazından fotoğraf seç</label>' +
-      '<input id="background-image-file" type="file" accept="image/*">' +
-      '<label for="background-blur">Bulanıklık: <output id="background-blur-value">0 px</output></label>' +
-      '<input id="background-blur" type="range" min="0" max="24" step="1" value="0">' +
-      '<div class="background-settings-actions"><button type="button" id="background-reset">Varsayılana dön</button><button type="button" id="background-close">Kapat</button></div>';
-
-    topbar.appendChild(toggle);
-    document.body.appendChild(panel);
-
-    var urlInput = panel.querySelector("#background-image-url");
-    var fileInput = panel.querySelector("#background-image-file");
-    var blurInput = panel.querySelector("#background-blur");
-    var blurValue = panel.querySelector("#background-blur-value");
-    urlInput.value = settings.image && !settings.image.startsWith("data:") ? settings.image : "";
-    blurInput.value = Number(settings.blur) || 0;
-    blurValue.value = blurInput.value + " px";
-    applySettings();
-
-    toggle.addEventListener("click", function () {
-      panel.hidden = !panel.hidden;
-      toggle.setAttribute("aria-expanded", String(!panel.hidden));
-    });
-    urlInput.addEventListener("change", function () {
-      settings.image = urlInput.value.trim();
-      fileInput.value = "";
-      applySettings();
-    });
-    blurInput.addEventListener("input", function () {
-      settings.blur = Number(blurInput.value);
-      blurValue.value = blurInput.value + " px";
-      applySettings();
-    });
-    fileInput.addEventListener("change", function () {
-      var file = fileInput.files && fileInput.files[0];
-      if (!file) return;
-      if (!file.type.startsWith("image/") || file.size > 2 * 1024 * 1024) {
-        if (window.showToast) window.showToast("2 MB'dan küçük bir fotoğraf seçin.", "error");
-        fileInput.value = "";
-        return;
-      }
-      var reader = new FileReader();
-      reader.onload = function () {
-        settings.image = reader.result;
-        urlInput.value = "";
-        applySettings();
-      };
-      reader.readAsDataURL(file);
-    });
-    panel.querySelector("#background-reset").addEventListener("click", function () {
-      settings = { image: "", blur: 0 };
-      urlInput.value = "";
-      fileInput.value = "";
-      blurInput.value = 0;
-      blurValue.value = "0 px";
-      applySettings();
-    });
-    panel.querySelector("#background-close").addEventListener("click", function () {
-      panel.hidden = true;
-      toggle.setAttribute("aria-expanded", "false");
-    });
-    document.addEventListener("click", function (event) {
-      if (!panel.hidden && !panel.contains(event.target) && event.target !== toggle && !toggle.contains(event.target)) {
-        panel.hidden = true;
-        toggle.setAttribute("aria-expanded", "false");
-      }
-    });
+        if (image) {
+          var imageUrl = new URL(image, configUrl.href);
+          if (imageUrl.protocol === "http:" || imageUrl.protocol === "https:") {
+            backdrop.style.backgroundImage = 'url("' + imageUrl.href.replace(/"/g, "%22") + '"), var(--bg-image)';
+          }
+        }
+        document.documentElement.style.setProperty("--bg-blur", blur + "px");
+      })
+      .catch(function () {
+        /* data.json bulunmazsa CSS varsayılan arka planı kullanılır. */
+      });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initBackgroundControls);
-  } else {
-    initBackgroundControls();
-  }
+  loadBackgroundConfig();
 
   checkMaintenanceMode();
 })();
