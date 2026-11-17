@@ -8,7 +8,7 @@
 
   var DATA = {
     name: "Konechiba Senpai",
-    logo: "https://photograph.eternalproduction.net/konechiba-senpai-logo.jpg",
+    logo: "", // Profil fotoğrafı data.json içindeki bağlantıdan alınır.
     bio: "Merhaba! Ben Konechiba Senpai. High School DxD içerikleri, karakter analizleri, haberler ve eğlenceli paylaşımlar için doğru yerdesin. Sosyal medya hesaplarımdan beni takip etmeyi unutma! ✨",
     socials: [
       { name: "Instagram", username: "Konechiba Senpai Instagram", url: "https://www.instagram.com/konechiba._.senpai", icon: "instagram" },
