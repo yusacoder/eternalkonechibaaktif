@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Eternal Production",
+    "logo": "https://photograph.eternalproduction.net/eternal-logo.jpg",
+    "description": "Konechiba Senpai'nin bağlı olduğu yetenek ajansı.",
+    "url": "https://www.eternalproduction.net"
+  },
+    {
+    "name": "Loot Sepeti",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHeHLCQHPt7ubWAPU4TALbmsUELJdRt2Ss1fx8VFVwAA&s=10",
+    "description": "Anime figürleri ve daha fazlası!",
+    "url": "https://lootsepeti.com"
+  },
+  
+  {
+    "name": "Helixsun",
+    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPP3ftgeXPCUuHeWAR2oku3aBfRJoVU3iWo-GfHfeI2w&s",
+    "description": "Hassas kontrol, akıcı hareket ve şık tasarım mouse padler.",
+    "url": "https://helixsun.com"
+  },
+  {
+    "name": "Animezer",
+    "logo": "https://pbs.twimg.com/media/Gu6FqDDWgAAhx8z.jpg",
+    "description": "Animezer & ücretsiz 4k anime izle!",
+    "url": "https://animezer.com/"
+  },
+    {
+    "name": "Zylorium",
+    "logo": "https://cdn.myikas.com/images/theme-images/8efac5c9-e5ed-47e0-a642-ef6defac8ea9/image_180.webp",
+    "description": "Anime kaplamalı oyuncu ekipmanları.",
+    "url": "https://zylorium.com.tr/"
+  },
+    {
+    "name": "Rebelx",
+    "logo": "https://rebelx.com.tr/uploads/favicon-1786369036504.png",
+    "description": "Rebelx ile oyuncu koltuklarının keyfine var!",
+    "url": "https://rebelx.com.tr/"
+  }
+]

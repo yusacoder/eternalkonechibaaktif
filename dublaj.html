@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dublajlarımız | Konechiba Senpai</title>
+<meta name="description" content="Konechiba Senpai ve Eternal Production tarafından hazırlanan Türkçe anime dublaj projelerinin tam listesi.">
+
+<meta name="theme-color" content="#0a0000">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div id="loading-screen" class="loading-screen">
+  <div class="loading-mark" aria-hidden="true"></div>
+</div>
+
+<div class="backdrop"></div>
+<div class="shade"></div>
+
+<div id="app-shell" class="page-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html#ana" aria-label="Konechiba Senpai ana sayfa">
+      <span class="wordmark-symbol">コ</span>
+      <span class="wordmark-caption">KONECHIBA SENPAI</span>
+    </a>
+  </header>
+
+<main class="page-content">
+    <div class="page-header">
+      <p class="page-eyebrow">DİZİ & SEZON BÖLÜMLERİ</p>
+      <h1 class="page-title">Dublajlarımız</h1>
+      <p class="page-sub">Türkçe seslendirdiğimiz anime projelerinin tamamı.</p>
+    </div>
+
+    <!-- Dublaj Arama Çubuğu -->
+    <div class="search-container">
+      <div class="search-box glass-card">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="dub-search" class="search-input" placeholder="Anime, sezon, bölüm veya platform ara..." aria-label="Dublaj arama">
+        <button id="search-clear" class="search-clear-btn" aria-label="Aramayı temizle" style="display:none;">✕</button>
+      </div>
+    </div>
+
+    <section id="dub-container" class="dub-container" aria-label="Dublaj projeleri ve sezonlar">
+      <!-- JS ile dublaj.js'den otomatik oluşturulur -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Konechiba Senpai. All Rights Reserved.</span>
+    <span class="powered-by-group"><span class="powered-label">Powered by</span> <a class="powered-by" href="https://www.eternalproduction.net" target="_blank" rel="noopener noreferrer">Eternal Production</a></span>
+  </footer>
+</div>
+
+<nav class="bottom-nav" aria-label="Ana menü">
+  <a class="nav-item" data-nav="home" href="index.html#ana"><span class="nav-icon"><i class="fa-solid fa-house"></i></span><span class="nav-label">Ana Sayfa</span></a>
+  <a class="nav-item" data-nav="accounts" href="index.html#hesaplar"><span class="nav-icon"><i class="fa-solid fa-share-nodes"></i></span><span class="nav-label">Hesaplar</span></a>
+  <a class="nav-item is-selected" data-nav="dublaj" href="dublaj.html" aria-current="page"><span class="nav-icon"><i class="fa-solid fa-clapperboard"></i></span><span class="nav-label">Dublaj</span></a>
+  <a class="nav-item" data-nav="sponsor" href="sponsorlar.html"><span class="nav-icon"><i class="fa-solid fa-handshake"></i></span><span class="nav-label">Sponsor</span></a>
+  <a class="nav-item" data-nav="destek" href="destek/konechiba.html"><span class="nav-icon"><i class="fa-solid fa-heart"></i></span><span class="nav-label">Destek</span></a>
+</nav>
+
+<div id="toast-stack" class="toast-stack"></div>
+
+<script src="js/common.js"></script>
+<script src="js/dublaj.js"></script>
+</body>
+</html>
