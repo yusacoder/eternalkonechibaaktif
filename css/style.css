@@ -43,6 +43,7 @@ main.page-content{display:block;width:100%;max-width:800px;margin:0 auto;padding
 .avatar,.avatar-fallback{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.6);box-shadow:0 12px 38px rgba(0,0,0,.3),0 0 0 6px rgba(255,42,42,.08)}
 .avatar-fallback{display:grid;place-items:center;background:linear-gradient(145deg,#3a1010,#110505);color:#eee;font-family:"Noto Serif JP",serif;font-size:43px}
 .avatar[hidden]{display:none}
+.avatar-fallback[hidden]{display:none}
 .verified-mark{position:relative;flex:0 0 22px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#1d9bf0;color:#fff;border:0;padding:0;cursor:pointer}
 .verified-mark[hidden]{display:none}
 .verified-mark:after{content:"";width:8px;height:4px;border-left:2px solid;border-bottom:2px solid;transform:rotate(-45deg) translate(1px,-1px)}
